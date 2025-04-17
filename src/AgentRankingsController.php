@@ -83,6 +83,11 @@ class AgentRankingsController extends BitrixController
             $monthlyAgentCommissions[$monthName] = [];
         }
 
+        if(empty($deals)) {
+            $this->response->sendSuccess(200, []);
+            return;
+        }
+
         foreach ($deals as $deal) {
             $agentId = $deal['ASSIGNED_BY_ID'];
             $commission = (float)($deal['UF_CRM_6800C17742B22'] ?? 0);
